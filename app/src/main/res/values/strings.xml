@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">MVVMList</string>
+    <string name="app_name">Get List</string>
+    <string name="item_image">Item Image</string>
 </resources>
