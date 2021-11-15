@@ -7,7 +7,6 @@ import javax.inject.Inject
 
 class ItemUseCase @Inject constructor(private val repository: ListItemsRepository) {
     suspend fun getItems() : ResultData<ItemResponse> {
-        val data = repository.getItemList()
-        return ResultData.Success(data)
+        return repository.getItemList()
     }
 }

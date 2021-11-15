@@ -3,6 +3,7 @@ package com.test.mvvmlist.presentation.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        //setup adapter and image cache
         mAdapter = ItemsAdapter()
         LoadImage.setCache(DoubleCache(applicationContext))
 
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             adapter = mAdapter
         }
 
+        //setup recyclerview item click
         mAdapter.onItemClick = { resultsItem ->
             startActivity(
                 Intent(this@MainActivity, DetailActivity::class.java).apply {
@@ -43,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        //Observe in livedata for response and update list based data
         viewModel.response.observe(this, {
             when (it) {
                 is ResultData.Success -> {
@@ -50,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                     mAdapter.submitList(it.data?.results)
                 }
                 is ResultData.Error -> {
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     binding.progressBar.visibility = View.GONE
                 }
                 is ResultData.Loading -> {

@@ -1,5 +1,6 @@
 package com.test.mvvmlist.presentation.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@VisibleForTesting
 @HiltViewModel
 class MainViewModel @Inject constructor(private var usecase: ItemUseCase) : ViewModel() {
     private val _response: MutableLiveData<ResultData<ItemResponse>> = MutableLiveData()
