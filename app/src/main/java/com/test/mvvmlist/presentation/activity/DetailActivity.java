@@ -27,12 +27,9 @@ public class DetailActivity extends AppCompatActivity {
 
         if (getIntent().getExtras().containsKey(Constants.INTENT_KEY_DETAIL)) {
             ResultsItem item = getIntent().getExtras().getParcelable(Constants.INTENT_KEY_DETAIL);
-            Log.d("TAG", "onCreate: " + item.getName());
-
             binding.tvName.setText(item.getName());
             binding.tvPrice.setText(item.getPrice());
             binding.tvUID.setText(item.getUid());
-
 
             try {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
